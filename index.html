@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Upon the Waters — Live on the Sea of Galilee</title>
+<meta name="description" content="A live open-air performance of Jesus walking on the water, staged on the Sea of Galilee at Tiberias. Join in person or watch the livestream from anywhere in the world.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sea-deep:#0b2a3c; --sea:#164b66; --sea-light:#5f9bb5;
+    --sand:#f4ecdf; --sand-dark:#e6d7bf; --gold:#c8963e; --ink:#1d2b33; --muted:#5b6b73;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--sand);line-height:1.6}
+  h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.15;margin:0 0 .5em}
+  h2{font-size:clamp(2rem,4vw,2.8rem)}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  section{padding:88px 0}
+  .eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.75rem;color:var(--gold);font-weight:600}
+  .btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:600;text-decoration:none;border:0;cursor:pointer;font-size:1rem;transition:transform .15s, background .15s}
+  .btn:hover{transform:translateY(-1px)}
+  .btn-gold{background:var(--gold);color:#fff}
+  .btn-gold:hover{background:#b3832f}
+  .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6)}
+  .btn-dark{background:var(--sea-deep);color:#fff}
+
+  /* Nav */
+  nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s}
+  nav.scrolled{background:rgba(11,42,60,.94);backdrop-filter:blur(8px)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{font-family:"Cormorant Garamond",serif;font-size:1.5rem;color:#fff;text-decoration:none;font-weight:600}
+  .links{display:flex;gap:26px;align-items:center}
+  .links a{color:#fff;text-decoration:none;font-size:.92rem;opacity:.9}
+  .cart-btn{background:rgba(255,255,255,.15);color:#fff;border:0;padding:8px 14px;border-radius:999px;cursor:pointer;font:inherit;font-size:.9rem}
+  .menu-btn{display:none;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer;padding:4px 8px}
+  .right{display:flex;align-items:center;gap:10px}
+  @media (max-width:760px){
+    .menu-btn{display:block}
+    .links{position:absolute;top:68px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(11,42,60,.97);display:none;padding:8px 0}
+    .links.open{display:flex}
+    .links a{padding:14px 20px;border-top:1px solid rgba(255,255,255,.08)}
+  }
+
+  /* Hero */
+  /* Background: Ivan Aivazovsky, "Walking on Water" (1888), public domain, via Wikimedia Commons */
+  .hero{min-height:100vh;display:flex;align-items:flex-end;color:#fff;position:relative;overflow:hidden;padding:120px 0 72px;
+    background:
+      linear-gradient(180deg,rgba(7,28,40,.55) 0%,rgba(7,28,40,0) 18%,rgba(7,28,40,0) 40%,rgba(7,28,40,.75) 72%,rgba(7,28,40,.95) 100%),
+      #0b2a3c url("https://upload.wikimedia.org/wikipedia/commons/3/30/Po_vodam_1888.jpg") center 18% / cover no-repeat}
+  .hero .credit{position:absolute;right:16px;bottom:10px;font-size:.72rem;opacity:.6;z-index:2}
+  .hero-content{position:relative;z-index:2;text-align:center;max-width:780px;margin:0 auto}
+  .hero h1{font-size:clamp(2.8rem,7vw,5.2rem);margin-bottom:.2em;text-shadow:0 2px 20px rgba(0,0,0,.25)}
+  .hero p.lead{font-size:clamp(1.05rem,2vw,1.25rem);opacity:.95;margin:0 auto 32px;max-width:620px}
+  .hero .meta{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:34px;font-size:.92rem}
+  .hero .meta span{background:rgba(0,0,0,.22);padding:6px 14px;border-radius:999px}
+  .hero .ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* Story */
+  .story{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+  .story blockquote{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.6rem;border-left:3px solid var(--gold);margin:0;padding:6px 0 6px 24px;color:var(--sea)}
+  .story blockquote cite{display:block;font-style:normal;font-family:Inter;font-size:.85rem;color:var(--muted);margin-top:10px}
+  @media (max-width:860px){.story{grid-template-columns:1fr;gap:36px}}
+
+  /* Ways to join */
+  .alt{background:#fff}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+  .card{background:var(--sand);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column}
+  .alt .card{background:var(--sand)}
+  .card .icon{font-size:2rem;margin-bottom:10px}
+  .card h3{font-size:1.6rem}
+  .card .price{font-size:1.9rem;font-family:"Cormorant Garamond",serif;font-weight:600;margin:6px 0 12px;color:var(--sea)}
+  .card .price small{font-family:Inter;font-size:.85rem;color:var(--muted);font-weight:400}
+  .card ul{padding-left:18px;margin:0 0 22px;color:var(--muted);font-size:.95rem;flex:1}
+  .card.featured{background:var(--sea-deep);color:#fff}
+  .card.featured .price{color:var(--gold)} .card.featured ul{color:rgba(255,255,255,.8)}
+  @media (max-width:900px){.cards{grid-template-columns:1fr}}
+
+  /* Schedule */
+  .dates{margin-top:36px;display:grid;gap:12px}
+  .date{display:grid;grid-template-columns:110px 1fr auto;gap:20px;align-items:center;background:#fff;border-radius:var(--radius);padding:18px 24px}
+  .date .d{font-family:"Cormorant Garamond",serif;font-size:1.5rem;font-weight:600;color:var(--sea)}
+  .date .info small{color:var(--muted)}
+  .tag{font-size:.75rem;padding:4px 10px;border-radius:999px;background:#e9f2f6;color:var(--sea);font-weight:600}
+  .tag.low{background:#fbeee0;color:#a2611d}
+  @media (max-width:600px){.date{grid-template-columns:1fr;gap:6px}}
+
+  /* Shop */
+  .shop{background:var(--sea-deep);color:#fff}
+  .shop .sub{color:rgba(255,255,255,.75);max-width:640px}
+  .products{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+  .product{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+  .product .img{height:200px;display:flex;align-items:center;justify-content:center}
+  .product .body{padding:22px;display:flex;flex-direction:column;flex:1}
+  .product h3{font-size:1.5rem;margin-bottom:.2em}
+  .product p{color:rgba(255,255,255,.72);font-size:.92rem;flex:1;margin:0 0 16px}
+  .product .row{display:flex;justify-content:space-between;align-items:center}
+  .product .amt{font-size:1.3rem;font-weight:600;color:var(--gold)}
+  @media (max-width:900px){.products{grid-template-columns:1fr}}
+  .note{margin-top:28px;font-size:.82rem;color:rgba(255,255,255,.6)}
+
+  /* FAQ */
+  details{background:#fff;border-radius:var(--radius);padding:18px 24px;margin-bottom:12px}
+  summary{cursor:pointer;font-weight:600;list-style:none}
+  summary::after{content:"+";float:right;color:var(--gold);font-size:1.3rem;line-height:1}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--muted);margin:12px 0 0}
+
+  /* Contact */
+  form{display:grid;gap:14px;max-width:560px}
+  input,textarea,select{font:inherit;padding:13px 16px;border-radius:10px;border:1px solid var(--sand-dark);background:#fff;width:100%}
+  footer{background:#071c28;color:rgba(255,255,255,.6);padding:40px 0;font-size:.88rem}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+
+  /* Cart drawer */
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(380px,100%);background:#fff;z-index:100;transform:translateX(100%);transition:transform .3s;box-shadow:-10px 0 40px rgba(0,0,0,.2);display:flex;flex-direction:column}
+  .drawer.open{transform:none}
+  .drawer header{padding:22px 24px;border-bottom:1px solid var(--sand-dark);display:flex;justify-content:space-between;align-items:center}
+  .drawer header h3{margin:0;font-size:1.6rem}
+  .drawer .items{flex:1;overflow:auto;padding:12px 24px}
+  .line{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f0e8da;gap:10px}
+  .qty{display:flex;align-items:center;gap:8px}
+  .qty button{width:28px;height:28px;border-radius:50%;border:1px solid var(--sand-dark);background:#fff;cursor:pointer}
+  .drawer footer{background:#fff;color:var(--ink);padding:20px 24px;border-top:1px solid var(--sand-dark);display:block}
+  .x{background:none;border:0;font-size:1.6rem;cursor:pointer;color:var(--muted)}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--sea-deep);color:#fff;padding:12px 22px;border-radius:999px;transition:transform .3s;z-index:120}
+  .toast.show{transform:translateX(-50%)}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <a href="#" class="logo">Upon the Waters</a>
+    <div class="links">
+      <a href="#story">The Story</a>
+      <a href="#join">Join Us</a>
+      <a href="#dates">Dates</a>
+      <a href="#shop">Shop</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="right">
+      <button class="cart-btn" onclick="toggleCart(true)">Cart (<span id="cartCount">0</span>)</button>
+      <button class="menu-btn" aria-label="Menu" onclick="document.querySelector('.links').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="credit">Painting: Ivan Aivazovsky, <em>Walking on Water</em> (1888)</span>
+  <div class="hero-content wrap">
+    <div class="eyebrow" style="color:#ffe2b0">Live on the Sea of Galilee · Tiberias</div>
+    <h1>Upon the Waters</h1>
+    <p class="lead">A sunset performance of Jesus walking on the sea, staged on the very shore where the Gospels tell it happened. Join us in person, or from anywhere in the world.</p>
+    <div class="meta"><span>📍 Tiberias, Israel</span><span>🌅 At sunset</span><span>🌍 Streamed worldwide</span></div>
+    <div class="ctas">
+      <a href="#join" class="btn btn-gold">Get Tickets</a>
+      <a href="#join" class="btn btn-ghost">Watch Online</a>
+    </div>
+  </div>
+</header>
+
+<section id="story">
+  <div class="wrap story">
+    <div>
+      <div class="eyebrow">The Story</div>
+      <h2>Where the story happened, told again</h2>
+      <p>Two thousand years ago, on a stormy night on this lake, the disciples saw a figure coming toward them across the water. Peter stepped out of the boat to meet him, and began to sink when his faith faltered.</p>
+      <p><strong>Upon the Waters</strong> brings that night back to life on the Sea of Galilee itself, with actors, live music, fishing boats on the lake and the hills of Galilee behind them as the sun goes down.</p>
+      <p>Whether you sit on the shore in Tiberias or watch from your living room on another continent, you are part of the audience.</p>
+    </div>
+    <blockquote>
+      “But straightway Jesus spake unto them, saying, Be of good cheer; it is I; be not afraid.”
+      <cite>Matthew 14:27</cite>
+    </blockquote>
+  </div>
+</section>
+
+<section id="join" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">Join Us</div>
+    <h2>Three ways to be there</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🌍</div>
+        <h3>Livestream</h3>
+        <div class="price">$19 <small>/ household</small></div>
+        <ul>
+          <li>Live HD broadcast at sunset</li>
+          <li>Multiple camera angles from shore &amp; boat</li>
+          <li>Replay available for 7 days</li>
+          <li>English, Hebrew, Spanish &amp; Portuguese subtitles</li>
+        </ul>
+        <button class="btn btn-dark" onclick="addToCart('stream')">Add to cart</button>
+      </div>
+      <div class="card featured">
+        <div class="icon">🌅</div>
+        <h3>On the Shore</h3>
+        <div class="price">$79 <small>/ person</small></div>
+        <ul>
+          <li>Reserved seating on the Tiberias waterfront</li>
+          <li>Live music and narration</li>
+          <li>Pre-show walk along the promenade with a guide</li>
+          <li>Includes one Galilee water keepsake vial</li>
+        </ul>
+        <button class="btn btn-gold" onclick="addToCart('shore')">Add to cart</button>
+      </div>
+      <div class="card">
+        <div class="icon">⛵</div>
+        <h3>On the Boat</h3>
+        <div class="price">$189 <small>/ person</small></div>
+        <ul>
+          <li>Watch from a wooden boat on the lake</li>
+          <li>Closest view of the performance</li>
+          <li>Small groups, limited to 40 guests</li>
+          <li>Includes keepsake gift set</li>
+        </ul>
+        <button class="btn btn-dark" onclick="addToCart('boat')">Add to cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dates">
+  <div class="wrap">
+    <div class="eyebrow">Upcoming Performances</div>
+    <h2>Dates &amp; times</h2>
+    <p style="color:var(--muted)">Performances begin 30 minutes before sunset, Israel time. Livestream tickets show the time in your own time zone after purchase.</p>
+    <div class="dates" id="dateList"></div>
+  </div>
+</section>
+
+<section id="shop" class="shop">
+  <div class="wrap">
+    <div class="eyebrow">Galilee Keepsakes</div>
+    <h2>Take a piece of Galilee home</h2>
+    <p class="sub">Small keepsakes gathered by hand on the shores of the Sea of Galilee, near Tiberias, and sealed for travel. Shipped worldwide.</p>
+    <div class="products">
+      <div class="product">
+        <div class="img" style="background:linear-gradient(160deg,#2a6c8a,#0e3549)">
+          <svg width="70" height="130" viewBox="0 0 70 130"><rect x="25" y="4" width="20" height="14" rx="3" fill="#c8963e"/><path d="M22 18h26v14c10 6 14 14 14 26v58a10 10 0 0 1-10 10H18a10 10 0 0 1-10-10V58c0-12 4-20 14-26z" fill="rgba(255,255,255,.25)" stroke="#fff" stroke-width="2"/><path d="M10 78q12-6 25 0t25 0v38a8 8 0 0 1-8 8H18a8 8 0 0 1-8-8z" fill="#7fc0dc"/></svg>
+        </div>
+        <div class="body">
+          <h3>Galilee Water</h3>
+          <p>A 30 ml glass vial of water from the Sea of Galilee, sealed with a cork and wax, with a certificate of origin.</p>
+          <div class="row"><span class="amt">$24</span><button class="btn btn-gold" onclick="addToCart('water')">Add</button></div>
+        </div>
+      </div>
+      <div class="product">
+        <div class="img" style="background:linear-gradient(160deg,#8b6a44,#4a3520)">
+          <svg width="90" height="110" viewBox="0 0 90 110"><rect x="30" y="4" width="30" height="12" rx="3" fill="#c8963e"/><rect x="14" y="16" width="62" height="88" rx="12" fill="rgba(255,255,255,.2)" stroke="#fff" stroke-width="2"/><path d="M16 60q15-8 29 0t29 0v32a10 10 0 0 1-10 10H26a10 10 0 0 1-10-10z" fill="#c9a27a"/></svg>
+        </div>
+        <div class="body">
+          <h3>Galilee Earth</h3>
+          <p>A small sealed jar of sand and stone from the Galilee shoreline, sterilized and packed for travel, with a certificate of origin.</p>
+          <div class="row"><span class="amt">$29</span><button class="btn btn-gold" onclick="addToCart('earth')">Add</button></div>
+        </div>
+      </div>
+      <div class="product">
+        <div class="img" style="background:linear-gradient(160deg,#c8963e,#7a5520)">
+          <svg width="120" height="110" viewBox="0 0 120 110"><rect x="10" y="30" width="100" height="70" rx="8" fill="rgba(255,255,255,.2)" stroke="#fff" stroke-width="2"/><path d="M10 50h100M60 30v70" stroke="#fff" stroke-width="2"/><path d="M60 30c-10-20-30-20-30-8s30 8 30 8c0 0 30 4 30-8s-20-12-30 8" fill="none" stroke="#fff" stroke-width="2"/></svg>
+        </div>
+        <div class="body">
+          <h3>Pilgrim Gift Set</h3>
+          <p>Water vial, earth jar and an olive-wood cross in a linen-lined box. A gift for family, church or a loved one.</p>
+          <div class="row"><span class="amt">$59</span><button class="btn btn-gold" onclick="addToCart('set')">Add</button></div>
+        </div>
+      </div>
+    </div>
+    <p class="note">Some countries limit the import of soil and natural materials. Earth products ship only to destinations where they are allowed; we will confirm at checkout.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap" style="max-width:820px">
+    <div class="eyebrow">Questions</div>
+    <h2>Good to know</h2>
+    <details><summary>Where exactly does the performance take place?</summary><p>On the Tiberias waterfront, on the western shore of the Sea of Galilee. Exact meeting point and directions are emailed with your ticket.</p></details>
+    <details><summary>What happens if the weather is bad?</summary><p>If the performance is cancelled for weather, in-person guests can move to another date or get a full refund. The livestream is rescheduled automatically.</p></details>
+    <details><summary>Is the show suitable for children?</summary><p>Yes. The performance is about 50 minutes long and is suitable for all ages. Children under 6 sit on the shore free with an adult.</p></details>
+    <details><summary>How long does shipping take?</summary><p>Keepsakes ship from Israel within 3 business days. Delivery usually takes 7–14 days depending on your country.</p></details>
+    <details><summary>Can churches or groups book together?</summary><p>Yes. Groups of 15 or more get a discount and can reserve a private boat. Use the form below to get in touch.</p></details>
+  </div>
+</section>
+
+<section id="contact" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">Contact</div>
+    <h2>Bring your group, church or family</h2>
+    <p style="color:var(--muted);max-width:560px">Questions, group bookings or press? Send us a message and we'll reply within one business day.</p>
+    <form onsubmit="event.preventDefault();toast('Thank you! We will be in touch soon.');this.reset();">
+      <input required placeholder="Your name">
+      <input required type="email" placeholder="Email">
+      <select><option>General question</option><option>Group booking</option><option>Shop order</option><option>Press</option></select>
+      <textarea rows="4" placeholder="Message"></textarea>
+      <button class="btn btn-gold" style="justify-self:start">Send message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Upon the Waters · Tiberias, Israel</span>
+    <span>Terms · Privacy · Shipping &amp; Returns</span>
+  </div>
+</footer>
+
+<aside class="drawer" id="drawer" aria-label="Cart">
+  <header><h3>Your cart</h3><button class="x" onclick="toggleCart(false)" aria-label="Close">×</button></header>
+  <div class="items" id="items"></div>
+  <footer>
+    <div style="display:flex;justify-content:space-between;font-weight:600;margin-bottom:14px"><span>Total</span><span id="total">$0</span></div>
+    <button class="btn btn-gold" style="width:100%" onclick="checkout()">Checkout</button>
+  </footer>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script>
+const CATALOG = {
+  stream:{name:"Livestream ticket",price:19},
+  shore:{name:"On the Shore ticket",price:79},
+  boat:{name:"On the Boat ticket",price:189},
+  water:{name:"Galilee Water vial",price:24},
+  earth:{name:"Galilee Earth jar",price:29},
+  set:{name:"Pilgrim Gift Set",price:59}
+};
+let cart = {};
+try { cart = JSON.parse(localStorage.getItem("utw-cart")) || {}; } catch(e) {}
+function save(){ try{localStorage.setItem("utw-cart",JSON.stringify(cart))}catch(e){} render(); }
+function addToCart(id){ cart[id]=(cart[id]||0)+1; save(); toast(CATALOG[id].name+" added"); }
+function change(id,d){ cart[id]=(cart[id]||0)+d; if(cart[id]<=0) delete cart[id]; save(); }
+function render(){
+  const ids = Object.keys(cart);
+  document.getElementById("cartCount").textContent = ids.reduce((s,i)=>s+cart[i],0);
+  document.getElementById("items").innerHTML = ids.length ? ids.map(id=>`
+    <div class="line"><div><div>${CATALOG[id].name}</div><small style="color:var(--muted)">$${CATALOG[id].price}</small></div>
+    <div class="qty"><button onclick="change('${id}',-1)">−</button>${cart[id]}<button onclick="change('${id}',1)">+</button></div></div>`).join("")
+    : '<p style="color:var(--muted)">Your cart is empty.</p>';
+  document.getElementById("total").textContent = "$"+ids.reduce((s,i)=>s+cart[i]*CATALOG[i].price,0);
+}
+function toggleCart(open){ document.getElementById("drawer").classList.toggle("open",open); }
+function checkout(){ toast("Checkout is not connected yet — payment setup coming soon."); }
+let tt; function toast(msg){ const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("show"),2400); }
+
+// Upcoming dates: next 6 Fridays & Saturdays as placeholders
+(function(){
+  const out=[]; const d=new Date(); d.setDate(d.getDate()+1);
+  while(out.length<6){ if([5,6].includes(d.getDay())) out.push(new Date(d)); d.setDate(d.getDate()+1); }
+  document.getElementById("dateList").innerHTML = out.map((x,i)=>`
+    <div class="date"><div class="d">${x.toLocaleDateString("en-US",{month:"short",day:"numeric"})}</div>
+    <div class="info"><strong>${x.toLocaleDateString("en-US",{weekday:"long"})} sunset performance</strong><br><small>Shore · Boat · Livestream</small></div>
+    <span class="tag ${i%3===1?'low':''}">${i%3===1?'Few seats left':'Available'}</span></div>`).join("");
+})();
+
+// In-page links: scroll to the section explicitly (works on any host, incl. previews)
+document.addEventListener("click", e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  e.preventDefault();
+  document.querySelector(".links").classList.remove("open");
+  const id = a.getAttribute("href").slice(1);
+  const el = id ? document.getElementById(id) : null;
+  const navH = document.getElementById("nav").offsetHeight;
+  const y = el ? el.getBoundingClientRect().top + scrollY - navH : 0;
+  window.scrollTo({ top: y, behavior: "smooth" });
+});
+
+window.addEventListener("scroll",()=>document.getElementById("nav").classList.toggle("scrolled",scrollY>40));
+render();
+</script>
+</body>
+</html>
